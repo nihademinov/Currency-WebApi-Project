@@ -101,7 +101,8 @@ public class ValCursManager {
 
     public ValCursDto getVlCursByValute(LocalDate date, double nominal, String valuteCode) {
         if (checkValCursByDate(date)) {
-            ValuteDto valute = valuteManager.getValuteByCode(valuteCode);
+
+            ValuteDto valute = valuteManager.getValuteByCode(dateConvertor(date),valuteCode);
             valute = valuteManager.setValuteByValue(nominal, valute);
             return setValCurs(dateConvertor(date), valute);
         }
