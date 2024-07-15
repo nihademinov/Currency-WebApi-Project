@@ -1,6 +1,5 @@
 package org.example.exchangeratewebapiproject.service;
 
-
 import lombok.RequiredArgsConstructor;
 import org.example.exchangeratewebapiproject.api.dto.AuthenticationRequestDto;
 import org.example.exchangeratewebapiproject.api.dto.RegisterRequestDto;
@@ -10,7 +9,6 @@ import org.example.exchangeratewebapiproject.api.model.User;
 import org.example.exchangeratewebapiproject.repository.RoleRepository;
 import org.example.exchangeratewebapiproject.repository.UserRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

@@ -29,14 +29,12 @@ public class ModelMapperConfig {
     public ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
 
-        // Configure mappings for nested objects
         modelMapper.addMappings(new PropertyMap<ValCurs, ValCursMapDto>() {
             @Override
             protected void configure() {
                 map().setDate(source.getDate());
                 map().setName(source.getName());
                 map().setDescription(source.getDescription());
-                // Custom logic for nested list mapping
                 using(context -> {
                     List<ValType> valTypes = ((ValCurs) context.getSource()).getValTypes();
                     return valTypes.stream()
@@ -50,7 +48,6 @@ public class ModelMapperConfig {
             @Override
             protected void configure() {
                 map().setType(source.getType());
-                // Custom logic for nested list mapping
                 using(context -> {
                     List<Valute> valutes = ((ValType) context.getSource()).getValutes();
                     return valutes.stream()

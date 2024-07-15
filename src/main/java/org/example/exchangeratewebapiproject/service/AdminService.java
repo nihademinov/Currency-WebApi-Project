@@ -3,7 +3,6 @@ package org.example.exchangeratewebapiproject.service;
 import lombok.AllArgsConstructor;
 import org.example.exchangeratewebapiproject.api.dto.UserDto;
 import org.example.exchangeratewebapiproject.bussiness.management.UserManager;
-import org.example.exchangeratewebapiproject.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

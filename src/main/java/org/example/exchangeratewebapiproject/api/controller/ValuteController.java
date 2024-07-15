@@ -4,8 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.example.exchangeratewebapiproject.api.dto.ValCursDto;
 import org.example.exchangeratewebapiproject.api.dto.mappingDto.ValCursMapDto;
 import org.example.exchangeratewebapiproject.service.ValCursService;
-import org.example.exchangeratewebapiproject.service.ValTypeService;
-import org.example.exchangeratewebapiproject.service.ValuteService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
