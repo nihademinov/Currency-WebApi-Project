@@ -1,7 +1,5 @@
 package org.example.exchangeratewebapiproject.configuration;
 
-import org.example.exchangeratewebapiproject.api.dto.ValCursDto;
-import org.example.exchangeratewebapiproject.api.dto.ValTypeDto;
 import org.example.exchangeratewebapiproject.api.dto.mappingDto.ValCursMapDto;
 import org.example.exchangeratewebapiproject.api.dto.mappingDto.ValTypeMapDto;
 import org.example.exchangeratewebapiproject.api.dto.mappingDto.ValuteMapDto;
@@ -15,11 +13,6 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Configuration

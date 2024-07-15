@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class AdminManager {
 
-    private final UserRepository _userRepository;
 
 
 }
