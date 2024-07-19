@@ -40,7 +40,6 @@ public class UserManager {
         ModelMapper modelMapper = new ModelMapper();
         Optional<User> users = userRepository.getUserById(id);
 
-
         User user = users.get();
         modelMapper.map(userDTO, user);
 

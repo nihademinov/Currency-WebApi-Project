@@ -1,5 +1,6 @@
 package org.example.exchangeratewebapiproject.api.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.example.exchangeratewebapiproject.api.dto.ValCursDto;
 import org.example.exchangeratewebapiproject.api.dto.mappingDto.ValCursMapDto;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/currency")
+@SecurityRequirement(name = "Bearer Authentication")
 public class ValuteController {
 
 

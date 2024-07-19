@@ -22,8 +22,7 @@ import java.util.stream.Collectors;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-
-
+@SuppressWarnings({"deprecation"})
 @Table(name = "UserAccount")
 @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
 @SQLDelete(sql = "UPDATE user_account SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?")

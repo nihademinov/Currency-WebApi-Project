@@ -2,7 +2,6 @@ package org.example.exchangeratewebapiproject.api.model;
 
 
 import jakarta.persistence.*;
-import jakarta.xml.bind.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

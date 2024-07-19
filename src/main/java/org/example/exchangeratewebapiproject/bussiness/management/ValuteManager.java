@@ -2,7 +2,6 @@ package org.example.exchangeratewebapiproject.bussiness.management;
 
 import lombok.AllArgsConstructor;
 import org.example.exchangeratewebapiproject.api.dto.ValuteDto;
-import org.example.exchangeratewebapiproject.api.model.ValType;
 import org.example.exchangeratewebapiproject.api.model.Valute;
 import org.example.exchangeratewebapiproject.repository.ValuteRepository;
 import org.modelmapper.ModelMapper;

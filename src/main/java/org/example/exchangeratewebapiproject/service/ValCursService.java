@@ -28,8 +28,6 @@ public class ValCursService {
             return valCursManager.getValCursByDate(date);
         }
         return null;
-
-
     }
 
     public boolean checkExistValCurs(LocalDate localDate) {
