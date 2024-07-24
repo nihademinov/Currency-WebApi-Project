@@ -19,7 +19,10 @@ import java.util.function.Function;
 public class JwtService {
 
     private static final String SECRET_KEY = "d8c9de2dd8c25a0dc7aef72d523483e692ba7b28a4db57e95d894e9c402d8ade";
-    public <T> T extractClaim(String token, Function<Claims,T> claimsResolver) {
+    private static final long ACCESS_TOKEN_VALIDITY = 1000 * 60 * 15; // 15
+    private static final long REFRESH_TOKEN_VALIDITY = 1000 * 60 * 60 * 24 ; // 1 days
+
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
@@ -29,46 +32,49 @@ public class JwtService {
     }
 
     public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+        return generateToken(new HashMap<>(), userDetails, ACCESS_TOKEN_VALIDITY);
+    }
+
+    public String generateRefreshToken(UserDetails userDetails) {
+        return generateToken(new HashMap<>(), userDetails, REFRESH_TOKEN_VALIDITY);
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername()) && !istokenExpired(token));
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
-    private boolean istokenExpired(String token) {
-        return extraxtExspiration(token).before(new Date());
-
+    private boolean isTokenExpired(String token) {
+        return extractExpiration(token).before(new Date());
     }
 
-    private Date extraxtExspiration(String token) {
-        return extractClaim(token,Claims::getExpiration);
+    private Date extractExpiration(String token) {
+        return extractClaim(token, Claims::getExpiration);
     }
 
-    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails, long validity) {
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 *60*24))
-                .signWith(getSigninKey(), SignatureAlgorithm.HS256)
+                .setExpiration(new Date(System.currentTimeMillis() + validity))
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
     private Claims extractAllClaims(String token) {
         return Jwts
                 .parserBuilder()
-                .setSigningKey(getSigninKey())
+                .setSigningKey(getSigningKey())
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
-
     }
 
-    private Key getSigninKey() {
+    private Key getSigningKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
+
 }

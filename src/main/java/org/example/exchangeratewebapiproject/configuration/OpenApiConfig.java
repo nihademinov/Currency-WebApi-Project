@@ -23,7 +23,7 @@ public class OpenApiConfig {
         return new OpenAPI()
                 .addServersItem(new Server().url("http://localhost:8080")
                         .description("local"))
-                .info(new Info().title("Yonca API").version("V0")
+                .info(new Info().title("Currency API").version("V0")
                         .license(new License().name("Apache 2.0").url("https://springdoc.org/v2/")));
     }
 
