@@ -24,6 +24,5 @@ public class RegisterRequestDto {
     private String lastName;
     private String password;
     private String configPassword;
-    private List<String> roles;
 
 }

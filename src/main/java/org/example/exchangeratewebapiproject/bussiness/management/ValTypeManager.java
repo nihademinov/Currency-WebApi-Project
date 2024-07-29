@@ -1,18 +1,25 @@
 package org.example.exchangeratewebapiproject.bussiness.management;
 
+import com.remondis.remap.Mapper;
 import lombok.AllArgsConstructor;
 import org.example.exchangeratewebapiproject.api.dto.ValTypeDto;
+import org.example.exchangeratewebapiproject.api.model.ValType;
 import org.example.exchangeratewebapiproject.repository.ValTypeRepository;
-import org.modelmapper.ModelMapper;
+//import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
 public class ValTypeManager {
     private final ValTypeRepository valTypeRepository;
-    private final ModelMapper modelMapper = new ModelMapper();
+    private final Mapper<ValType, ValTypeDto> valTypeEntityToValTypeDtoMapper;
 
    public ValTypeDto getValTypeById(Long id) {
-       return modelMapper.map(valTypeRepository.findById(id), ValTypeDto.class);
+      Optional<ValType> valTypes =  valTypeRepository.findById(id);
+
+      return valTypeEntityToValTypeDtoMapper.map(valTypes.get());
    }
 }

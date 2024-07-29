@@ -25,6 +25,6 @@ public class ValuteMapDto {
     private String name;
 
     @XmlElement(name = "Value")
-    private double value;
+    private Double value;
 
 }

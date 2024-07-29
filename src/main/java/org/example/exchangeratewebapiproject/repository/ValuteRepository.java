@@ -19,6 +19,6 @@ public interface ValuteRepository extends JpaRepository<Valute, Long> {
             WHERE v.code = :code
             AND vc.date = :date
             """)
-    List<Valute> findByCodeAndValCursDate( @Param("date") String date,@Param("code") String code);
+    Valute findByCodeAndValCursDate( @Param("date") String date,@Param("code") String code);
 
 }

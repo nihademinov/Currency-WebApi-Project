@@ -14,5 +14,5 @@ public class ValuteResponseDto {
     private String code;
     private String nominal;
     private String name;
-    private double value;
+    private Double value;
 }

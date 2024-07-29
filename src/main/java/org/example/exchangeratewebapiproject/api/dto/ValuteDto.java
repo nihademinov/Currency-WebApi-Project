@@ -10,13 +10,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class ValuteDto {
 
     private String code;
     private String nominal;
     private String name;
-    private double value;
-    private Long valTypeId;
+    private Double value;
+    private long valTypeId;
 
 }

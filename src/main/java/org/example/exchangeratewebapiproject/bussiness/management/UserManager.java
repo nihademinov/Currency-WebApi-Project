@@ -1,10 +1,10 @@
 package org.example.exchangeratewebapiproject.bussiness.management;
 
+import com.remondis.remap.Mapper;
 import lombok.AllArgsConstructor;
 import org.example.exchangeratewebapiproject.api.dto.UserDto;
 import org.example.exchangeratewebapiproject.api.model.User;
 import org.example.exchangeratewebapiproject.repository.UserRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class UserManager {
     private final UserRepository userRepository;
-    private final ModelMapper modelMapper = new ModelMapper();
-
+    private final Mapper<User, UserDto> entityToUserDtoMapper;
+    private final Mapper<UserDto, User> userDtoToUserMapper;
 
     public void saveUser(User user) {
         userRepository.save(user);
@@ -25,26 +25,24 @@ public class UserManager {
     public List<UserDto> geUsers() {
         List<User> allUsers = userRepository.findAll();
         return allUsers.stream()
-                .map(user -> modelMapper.map(user, UserDto.class))
+                .map(entityToUserDtoMapper::map)
                 .collect(Collectors.toList());
     }
 
-    public UserDto getUsersById(Long id)
-    {
+    public UserDto getUsersById(Long id) {
         Optional<User> resp = userRepository.getUserById(id);
-        return resp.stream().map(user -> modelMapper.map(user, UserDto.class)).findFirst().orElse(null);
+        return resp.stream().map(entityToUserDtoMapper::map).findFirst().orElse(null);
     }
 
     public UserDto updateUser(Long id, UserDto userDTO) {
 
-        ModelMapper modelMapper = new ModelMapper();
         Optional<User> users = userRepository.getUserById(id);
 
         User user = users.get();
-        modelMapper.map(userDTO, user);
+        userDtoToUserMapper.map(userDTO, user);
 
         saveUser(user);
-        return modelMapper.map(user, UserDto.class);
+        return entityToUserDtoMapper.map(user);
     }
 
     public String deleteUser(Long id) {

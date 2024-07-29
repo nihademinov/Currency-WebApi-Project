@@ -45,6 +45,6 @@ public class ValuteController {
     public ValCursDto getSpecificValute(@PathVariable @DateTimeFormat(pattern = "dd.MM.yy") LocalDate date, @PathVariable
     double nominal, @PathVariable String code) {
 
-        return valCursService.getVaCursByValute(date, nominal, code);
+        return valCursService.getVaCursBySpecificValuteAndNominal(date, nominal, code);
     }
 }

@@ -51,8 +51,8 @@ public class ValCursService {
       return  valCursManager.getValCursMapDto(date);
     }
 
-    public ValCursDto getVaCursByValute(LocalDate date,double nominal, String valuteCode) {
-        return  valCursManager.getVlCursByValute(date,nominal,valuteCode);
+    public ValCursDto getVaCursBySpecificValuteAndNominal(LocalDate date,double nominal, String valuteCode) {
+        return  valCursManager.getValCursByValute(date,nominal,valuteCode);
     }
     @Transactional
     public String deleteValCursByDate(LocalDate date) {
