@@ -39,7 +39,7 @@ public class AdminController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
-    public UserDto updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
+    public String updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
         return adminService.updateUser(id, userDto);
     }
 

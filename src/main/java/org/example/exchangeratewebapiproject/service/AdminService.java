@@ -20,9 +20,11 @@ public class AdminService {
     public UserDto getUserById(Long id) {
         return userManager.getUsersById(id);
     }
-    public UserDto updateUser(Long id,UserDto userDto) {
-        return userManager.updateUser(id,userDto);
+
+    public String updateUser(Long id, UserDto userDto) {
+        return userManager.updateUser(id, userDto);
     }
+
     public String deleteUser(Long id) {
         return userManager.deleteUser(id);
     }

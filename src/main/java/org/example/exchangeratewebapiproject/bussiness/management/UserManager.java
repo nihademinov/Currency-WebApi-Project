@@ -34,15 +34,20 @@ public class UserManager {
         return resp.stream().map(entityToUserDtoMapper::map).findFirst().orElse(null);
     }
 
-    public UserDto updateUser(Long id, UserDto userDTO) {
+    public String updateUser(Long id, UserDto userDTO) {
 
-        Optional<User> users = userRepository.getUserById(id);
+        User user = getUser(id);
 
-        User user = users.get();
         userDtoToUserMapper.map(userDTO, user);
+        userRepository.save(user);
+        return "User updated";
+    }
 
-        saveUser(user);
-        return entityToUserDtoMapper.map(user);
+
+    public User getUser(Long id) {
+
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
     }
 
     public String deleteUser(Long id) {
