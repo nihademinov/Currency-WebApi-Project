@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: your_name
+      changes:
+        - createTable:
+            tableName: Valute
+            columns:
+              - column:
+                  name: ValuteId
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    unique: true
+              - column:
+                  name: Code
+                  type: varchar(255)
+              - column:
+                  name: Nominal
+                  type: varchar(255)
+              - column:
+                  name: Name
+                  type: varchar(255)
+              - column:
+                  name: Value
+                  type: double
+              - column:
+                  name: CreatedAt
+                  type: time
+                  constraints:
+                    nullable: false
+              - column:
+                  name: UpdatedAt
+                  type: time
+              - column:
+                  name: DeletedAt
+                  type: time
+              - column:
+                  name: ValTypeId
+                  type: bigint
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: Valute
+            baseColumnNames: ValTypeId
+            referencedTableName: ValType
+            referencedColumnNames: ValTypeId
+            constraintName: fk_valute_valtype

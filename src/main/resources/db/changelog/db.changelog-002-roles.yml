@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: your_name
+      changes:
+        - createTable:
+            tableName: Roles
+            columns:
+              - column:
+                  name: RolesId
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    unique: true
+              - column:
+                  name: Name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: CreatedAt
+                  type: time
+                  constraints:
+                    nullable: false
+              - column:
+                  name: UpdatedAt
+                  type: time
+              - column:
+                  name: DeletedAt
+                  type: time
+

@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: your_name
+      changes:
+        - createTable:
+            tableName: ValCurs
+            columns:
+              - column:
+                  name: ValCursId
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    unique: true
+              - column:
+                  name: Date
+                  type: varchar(255)
+              - column:
+                  name: Name
+                  type: varchar(255)
+              - column:
+                  name: Description
+                  type: varchar(255)
+              - column:
+                  name: CreatedAt
+                  type: time
+                  constraints:
+                    nullable: false
+              - column:
+                  name: UpdatedAt
+                  type: time
+              - column:
+                  name: DeletedAt
+                  type: time
+

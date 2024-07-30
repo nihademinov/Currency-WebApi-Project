@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: Exchange-Rate-WebApi-Project
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/currencyDb
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        physical-strategy: com.configuration.PascalCaseNamingStrategy
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yml
+
+
+springdoc:
+  swagger-ui:
+    doc-expansion: none
+    tagsSorter: alpha
+
+jwt:
+  secret: d8c9de2dd8c25a0dc7aef72d523483e692ba7b28a4db57e95d894e9c402d8ade

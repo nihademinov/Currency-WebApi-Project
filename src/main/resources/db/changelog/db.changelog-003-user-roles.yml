@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: your_name
+      changes:
+        - createTable:
+            tableName: UserRoles
+            columns:
+              - column:
+                  name: UserId
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: RoleId
+                  type: bigint
+                  constraints:
+                    nullable: false
+
+        - addPrimaryKey:
+            tableName: UserRoles
+            columnNames: UserId, RoleId
+            constraintName: pk_user_roles
+
+        - addForeignKeyConstraint:
+            baseTableName: UserRoles
+            baseColumnNames: UserId
+            referencedTableName: UserAccount
+            referencedColumnNames: UserAccountId
+            constraintName: fk_user_roles_user
+
+        - addForeignKeyConstraint:
+            baseTableName: UserRoles
+            baseColumnNames: RoleId
+            referencedTableName: Roles
+            referencedColumnNames: RolesId
+            constraintName: fk_user_roles_role

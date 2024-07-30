@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: your_name
+      changes:
+        - createTable:
+            tableName: UserAccount
+            columns:
+              - column:
+                  name: UserAccountId
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    unique: true
+              - column:
+                  name: Email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: FirstName
+                  type: varchar(255)
+              - column:
+                  name: LastName
+                  type: varchar(255)
+              - column:
+                  name: Password
+                  type: varchar(255)
+              - column:
+                  name: ConfigPassword
+                  type: varchar(255)
+              - column:
+                  name: CreatedAt
+                  type: time
+                  constraints:
+                    nullable: false
+              - column:
+                  name: UpdatedAt
+                  type: time
+              - column:
+                  name: DeletedAt
+                  type: time

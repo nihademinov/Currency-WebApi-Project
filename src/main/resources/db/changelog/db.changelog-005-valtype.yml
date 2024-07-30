@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: your_name
+      changes:
+        - createTable:
+            tableName: ValType
+            columns:
+              - column:
+                  name: ValTypeId
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    unique: true
+              - column:
+                  name: Type
+                  type: varchar(255)
+              - column:
+                  name: CreatedAt
+                  type: time
+                  constraints:
+                    nullable: false
+              - column:
+                  name: UpdatedAt
+                  type: time
+              - column:
+                  name: DeletedAt
+                  type: time
+              - column:
+                  name: ValCursId
+                  type: bigint
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: ValType
+            baseColumnNames: ValCursId
+            referencedTableName: ValCurs
+            referencedColumnNames: ValCursId
+            constraintName: fk_valtype_valcurs
