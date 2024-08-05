@@ -16,7 +16,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Valute")
+@Table(name = "Valute",schema = "Currency")
 public class Valute  {
 
 

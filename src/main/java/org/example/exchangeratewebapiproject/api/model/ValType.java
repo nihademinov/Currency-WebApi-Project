@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "ValType")
+@Table(name = "ValType",schema = "Currency")
 public class ValType  {
 
     @Id

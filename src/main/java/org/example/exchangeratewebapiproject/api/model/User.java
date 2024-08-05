@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuppressWarnings({"deprecation"})
-@Table(name = "UserAccount")
+@Table(name = "UserAccount",schema = "Currency")
 @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
 @SQLDelete(sql = "UPDATE \"UserAccount\" SET \"DeletedAt\" = CURRENT_TIMESTAMP WHERE \"UserAccountId\" = ?")
 @Where(clause = "\"DeletedAt\" IS NULL")
@@ -42,12 +42,14 @@ public class User  implements UserDetails {
 
     @Column(name = "FirstName")
     private String firstName;
+
     @Column(name = "LastName")
     private String lastName;
+
     @Column(name = "Password")
     private String password;
-    @Column(name = "ConfigPassword")
-    private String configPassword;
+
+
 
     @CreationTimestamp
     @Column(name = "CreatedAt", updatable = false)

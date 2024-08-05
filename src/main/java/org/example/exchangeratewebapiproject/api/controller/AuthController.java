@@ -2,15 +2,10 @@ package org.example.exchangeratewebapiproject.api.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.exchangeratewebapiproject.api.dto.AuthenticationRequestDto;
-import org.example.exchangeratewebapiproject.api.dto.RefreshTokenRequestDto;
 import org.example.exchangeratewebapiproject.api.dto.RegisterRequestDto;
-import org.example.exchangeratewebapiproject.api.model.AuthenticationResponse;
+import org.example.exchangeratewebapiproject.api.dto.AuthenticationResponse;
 import org.example.exchangeratewebapiproject.service.AuthenticationService;
-import org.example.exchangeratewebapiproject.service.JwtService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

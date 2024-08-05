@@ -1,10 +1,18 @@
 databaseChangeLog:
+  -  property:
+        name: schemaName
+        value: Currency
+  - changeSet:
+      id: 0
+      author: admin
   - include:
       file: db/changelog/db.changelog-001-user.yml
   - include:
       file: db/changelog/db.changelog-002-roles.yml
   - include:
       file: db/changelog/db.changelog-003-user-roles.yml
+  - include:
+      file: db/changelog/insert-default-data.yml
   - include:
       file: db/changelog/db.changelog-004-valcurs.yml
   - include:

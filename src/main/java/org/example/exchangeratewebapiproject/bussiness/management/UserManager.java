@@ -4,6 +4,7 @@ import com.remondis.remap.Mapper;
 import lombok.AllArgsConstructor;
 import org.example.exchangeratewebapiproject.api.dto.UserDto;
 import org.example.exchangeratewebapiproject.api.model.User;
+import org.example.exchangeratewebapiproject.exceptionHandler.NotFoundException;
 import org.example.exchangeratewebapiproject.repository.UserRepository;
 import org.springframework.stereotype.Component;
 
@@ -47,7 +48,7 @@ public class UserManager {
     public User getUser(Long id) {
 
         return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+                .orElseThrow(() -> new NotFoundException("User not found with id: " + id));
     }
 
     public String deleteUser(Long id) {

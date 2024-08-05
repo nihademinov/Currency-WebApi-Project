@@ -1,9 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: 1
-      author: your_name
+      id: 5
+      author: admin
       changes:
         - createTable:
+            schemaName: ${schemaName}
             tableName: ValType
             columns:
               - column:
@@ -40,3 +41,5 @@ databaseChangeLog:
             referencedTableName: ValCurs
             referencedColumnNames: ValCursId
             constraintName: fk_valtype_valcurs
+            baseTableSchemaName: ${schemaName}
+            referencedTableSchemaName: ${schemaName}

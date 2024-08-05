@@ -1,9 +1,10 @@
 databaseChangeLog:
   - changeSet:
       id: 1
-      author: your_name
+      author: admin
       changes:
         - createTable:
+            schemaName: ${schemaName}
             tableName: UserAccount
             columns:
               - column:
@@ -28,9 +29,6 @@ databaseChangeLog:
                   type: varchar(255)
               - column:
                   name: Password
-                  type: varchar(255)
-              - column:
-                  name: ConfigPassword
                   type: varchar(255)
               - column:
                   name: CreatedAt

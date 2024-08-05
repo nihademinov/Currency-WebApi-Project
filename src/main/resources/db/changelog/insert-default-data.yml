@@ -1,0 +1,66 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: admin
+      changes:
+        - insert:
+            schemaName: ${schemaName}
+            tableName: Roles
+            columns:
+              - column:
+                  name: Name
+                  value: ADMIN
+              - column:
+                  name: CreatedAt
+                  valueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: UpdatedAt
+                  valueComputed: CURRENT_TIMESTAMP
+
+        - insert:
+            schemaName: ${schemaName}
+            tableName: Roles
+            columns:
+              - column:
+                  name: Name
+                  value: USER
+              - column:
+                  name: CreatedAt
+                  valueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: UpdatedAt
+                  valueComputed: CURRENT_TIMESTAMP
+
+        - insert:
+            schemaName: ${schemaName}
+            tableName: UserAccount
+            columns:
+              - column:
+                  name: Email
+                  value: admin@example.com
+              - column:
+                  name: FirstName
+                  value: admin
+              - column:
+                  name: LastName
+                  value: admin
+              - column:
+                  name: Password
+                  value: admin
+              - column:
+                  name: CreatedAt
+                  valueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: UpdatedAt
+                  valueComputed: CURRENT_TIMESTAMP
+
+        - insert:
+            schemaName: ${schemaName}
+            tableName: UserRoles
+            columns:
+              - column:
+                  name: UserId
+                  valueComputed: (SELECT "UserAccountId" FROM "Currency"."UserAccount" WHERE "Email" = 'admin@example.com')
+              - column:
+                  name: RoleId
+                  valueComputed: (SELECT "RolesId" FROM "Currency"."Roles" WHERE "Name" = 'ADMIN')

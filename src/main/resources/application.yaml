@@ -15,12 +15,17 @@ spring:
     open-in-view: false
     properties:
       hibernate:
+        hbm2ddl:
+          auto: none
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        physical-strategy: com.configuration.PascalCaseNamingStrategy
+        physical-strategy: org.example.exchangeratewebapiproject.configuration.PascalCaseNamingStrategy
+        default_schema: Currency
 
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yml
+    default_schema: changelog
+#    contexts: dev, prod
 
 
 springdoc:

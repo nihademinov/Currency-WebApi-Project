@@ -10,6 +10,7 @@ import org.example.exchangeratewebapiproject.api.dto.ValuteResponseDto;
 import org.example.exchangeratewebapiproject.api.dto.mappingDto.ValCursMapDto;
 import org.example.exchangeratewebapiproject.api.model.ValCurs;
 import org.example.exchangeratewebapiproject.configuration.RestTemplateConfig;
+import org.example.exchangeratewebapiproject.exceptionHandler.CustomRestClientException;
 import org.example.exchangeratewebapiproject.repository.ValCursRepository;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
@@ -72,11 +73,11 @@ public class ValCursManager {
             ResponseEntity<String> response = restTemplateConfig.getRestTemplate().exchange(url, HttpMethod.GET, entity, String.class);
 
             if (response.getStatusCode() != HttpStatus.OK)
-                throw new RestClientException("HTTP error: " + response.getStatusCodeValue());
+                throw new CustomRestClientException("HTTP error: " + response.getStatusCodeValue());
 
             MediaType contentType = response.getHeaders().getContentType();
             if (!MediaType.APPLICATION_XML.includes(contentType))
-                throw new RestClientException("Unexpected content type: " + contentType);
+                throw new CustomRestClientException("Unexpected content type: " + contentType);
 
             String xmlData = response.getBody();
             JAXBContext context = JAXBContext.newInstance(ValCursMapDto.class);

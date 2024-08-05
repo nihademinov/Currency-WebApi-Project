@@ -1,28 +1,30 @@
 package org.example.exchangeratewebapiproject.api.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
-
-
-
 public class RegisterRequestDto {
 
+    @NotBlank
     private String email;
 
+    @NotBlank
     private String firstName;
+
+    @NotBlank
     private String lastName;
+
+    @NotBlank
     private String password;
-    private String configPassword;
+
+    @NotBlank
+    private String confirmPassword;
 
 }

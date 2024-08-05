@@ -16,7 +16,7 @@ public class PascalCaseNamingStrategy implements PhysicalNamingStrategy {
 
     @Override
     public Identifier toPhysicalSchemaName(Identifier logicalName, JdbcEnvironment jdbcEnvironment) {
-        return new Identifier("public", true);
+        return new Identifier("Currency", true);
     }
 
     @Override

@@ -1,9 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: 1
-      author: your_name
+      id: 2
+      author: admin
       changes:
         - createTable:
+            schemaName: ${schemaName}
             tableName: Roles
             columns:
               - column:

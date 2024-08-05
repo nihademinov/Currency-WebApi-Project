@@ -21,7 +21,6 @@ public class ValTypeMapDto {
     @XmlAttribute(name = "Type")
     private String type;
 
-//    @XmlElementWrapper(name = "Valutes")
     @XmlElement(name = "Valute")
     private List<ValuteMapDto> valutes;
 

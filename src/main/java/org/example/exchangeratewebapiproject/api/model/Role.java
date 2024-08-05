@@ -17,7 +17,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Roles")
+@Table(name = "Roles",schema = "Currency")
 public class Role  {
 
     @Id

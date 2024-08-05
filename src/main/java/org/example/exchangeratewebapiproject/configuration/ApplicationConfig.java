@@ -3,6 +3,7 @@ package org.example.exchangeratewebapiproject.configuration;
 
 
 import lombok.RequiredArgsConstructor;
+import org.example.exchangeratewebapiproject.exceptionHandler.NotFoundException;
 import org.example.exchangeratewebapiproject.repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +24,7 @@ public class ApplicationConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> userRepesitory.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+                .orElseThrow(() -> new NotFoundException("User not found"));
     }
 
     @Bean

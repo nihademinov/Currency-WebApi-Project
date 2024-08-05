@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.exchangeratewebapiproject.api.dto.ValCursDto;
 import org.example.exchangeratewebapiproject.api.dto.mappingDto.ValCursMapDto;
 import org.example.exchangeratewebapiproject.bussiness.management.ValCursManager;
+import org.example.exchangeratewebapiproject.exceptionHandler.AlreadyExistsException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -36,7 +37,7 @@ public class ValCursService {
 
     public String syncCurrData(LocalDate localDate) {
         if (checkExistValCurs(localDate))
-            return "already Exist";
+            throw new AlreadyExistsException("data already exists");
 
         createValCurs(getValCursMapDto(localDate));
         return "Successfully created";
