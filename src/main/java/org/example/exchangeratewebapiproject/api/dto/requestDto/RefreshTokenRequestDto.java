@@ -1,4 +1,4 @@
-package org.example.exchangeratewebapiproject.api.dto;
+package org.example.exchangeratewebapiproject.api.dto.requestDto;
 
 import lombok.Data;
 

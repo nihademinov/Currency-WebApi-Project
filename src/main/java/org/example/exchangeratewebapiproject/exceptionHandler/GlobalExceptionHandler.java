@@ -56,9 +56,21 @@ public class GlobalExceptionHandler {
         return ofType(request, HttpStatus.UNAUTHORIZED, ex.getMessage());
     }
 
+    @ExceptionHandler(JwtTokenInvalidException.class)
+    public final ResponseEntity<Map<String, Object>> handle(JwtTokenInvalidException ex, WebRequest request) {
+        return ofType(request, HttpStatus.UNAUTHORIZED, ex.getMessage());
+    }
+
+    @ExceptionHandler(JwtException.class)
+    public final ResponseEntity<Map<String, Object>> handle(JwtException ex, WebRequest request) {
+        return ofType(request, HttpStatus.UNAUTHORIZED, ex.getMessage());
+    }
+
     private ResponseEntity<Map<String, Object>> ofType(WebRequest request, HttpStatus status, String message) {
         return ofType(request, status, message, Collections.emptyList(), 0);
     }
+
+
 
     private ResponseEntity<Map<String, Object>> ofType(
             WebRequest request, HttpStatus status, String message, List<Object> validationErrors, int errorCode) {

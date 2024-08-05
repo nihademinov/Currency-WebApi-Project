@@ -14,7 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 public class ValuteManager {
     private final ValuteRepository valuteRepository;
-//    private final ModelMapper modelMapper = new ModelMapper();
     private final Mapper<Valute, ValuteDto> valuteEntityToValuteDtoMapper;
 
 

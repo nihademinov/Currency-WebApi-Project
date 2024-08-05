@@ -1,9 +1,9 @@
 package org.example.exchangeratewebapiproject.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.exchangeratewebapiproject.api.dto.AuthenticationRequestDto;
-import org.example.exchangeratewebapiproject.api.dto.RegisterRequestDto;
-import org.example.exchangeratewebapiproject.api.dto.AuthenticationResponse;
+import org.example.exchangeratewebapiproject.api.dto.requestDto.AuthenticationRequestDto;
+import org.example.exchangeratewebapiproject.api.dto.requestDto.RegisterRequestDto;
+import org.example.exchangeratewebapiproject.api.dto.responseDto.AuthenticationResponse;
 import org.example.exchangeratewebapiproject.bussiness.management.AuthManager;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ public class AuthenticationService {
 
     private final AuthManager authManager;
 
-    public AuthenticationResponse register(RegisterRequestDto request) {
+    public String register(RegisterRequestDto request) {
        return authManager.register(request);
     }
 
@@ -24,8 +24,8 @@ public class AuthenticationService {
     }
 
 
-    public AuthenticationResponse refreshToken(String refreshToken) {
-       return authManager.refreshToken(refreshToken);
-    }
+//    public AuthenticationResponse refreshToken(String refreshToken) {
+//       return authManager.refreshToken(refreshToken);
+//    }
 }
 

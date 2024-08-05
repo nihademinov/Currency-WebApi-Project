@@ -6,7 +6,7 @@ import jakarta.xml.bind.Unmarshaller;
 import lombok.RequiredArgsConstructor;
 import org.example.exchangeratewebapiproject.api.dto.ValCursDto;
 import org.example.exchangeratewebapiproject.api.dto.ValuteDto;
-import org.example.exchangeratewebapiproject.api.dto.ValuteResponseDto;
+import org.example.exchangeratewebapiproject.api.dto.responseDto.ValuteResponseDto;
 import org.example.exchangeratewebapiproject.api.dto.mappingDto.ValCursMapDto;
 import org.example.exchangeratewebapiproject.api.model.ValCurs;
 import org.example.exchangeratewebapiproject.configuration.RestTemplateConfig;
@@ -14,7 +14,6 @@ import org.example.exchangeratewebapiproject.exceptionHandler.CustomRestClientEx
 import org.example.exchangeratewebapiproject.repository.ValCursRepository;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestClientException;
 
 import java.io.StringReader;
 import java.time.LocalDate;
@@ -28,7 +27,6 @@ public class ValCursManager {
     private final ValCursRepository valCursRepository;
     private final ValuteManager valuteManager;
     private final ValTypeManager valTypeManager;
-    //    private final ModelMapper modelMapper = new ModelMapper();
     private final Mapper<ValCurs, ValCursMapDto> valCursEntityToValCursMapDtoMapper;
     private final Mapper<ValCursMapDto, ValCurs> valCursMapDtoToValCursMapper;
     private final RestTemplateConfig restTemplateConfig;

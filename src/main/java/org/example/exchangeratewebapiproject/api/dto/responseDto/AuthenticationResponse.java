@@ -1,4 +1,4 @@
-package org.example.exchangeratewebapiproject.api.dto;
+package org.example.exchangeratewebapiproject.api.dto.responseDto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

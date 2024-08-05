@@ -19,6 +19,10 @@ public class UserManager {
     private final Mapper<User, UserDto> entityToUserDtoMapper;
     private final Mapper<UserDto, User> userDtoToUserMapper;
 
+    public boolean existsByEmail(String email) {
+        return userRepository.findByEmail(email).isPresent();
+    }
+
     public void saveUser(User user) {
         userRepository.save(user);
     }
@@ -40,7 +44,7 @@ public class UserManager {
         User user = getUser(id);
 
         userDtoToUserMapper.map(userDTO, user);
-        userRepository.save(user);
+        saveUser(user);
         return "User updated";
     }
 

@@ -17,10 +17,7 @@ import java.util.List;
 @RequestMapping("/currency")
 @SecurityRequirement(name = "Bearer Authentication")
 public class ValuteController {
-
-
     private final ValCursService valCursService;
-
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping()
