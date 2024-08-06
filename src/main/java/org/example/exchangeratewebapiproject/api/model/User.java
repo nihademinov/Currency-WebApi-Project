@@ -2,6 +2,8 @@ package org.example.exchangeratewebapiproject.api.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,15 +40,19 @@ public class User  implements UserDetails {
 
 
     @Column(name = "Email", unique = true, nullable = false)
+    @Email
     private String email;
 
     @Column(name = "FirstName")
+    @NotBlank
     private String firstName;
 
     @Column(name = "LastName")
+    @NotBlank
     private String lastName;
 
     @Column(name = "Password")
+    @NotBlank
     private String password;
 
 

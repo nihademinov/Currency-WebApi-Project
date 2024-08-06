@@ -1,6 +1,7 @@
 package org.example.exchangeratewebapiproject.api.dto.requestDto;
 
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 public class AuthenticationRequestDto {
 
     @NotBlank
+    @Email
     private String email;
 
     @NotBlank

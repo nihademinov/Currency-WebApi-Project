@@ -40,7 +40,7 @@ public class ValuteController {
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/{date}/{nominal}/{code}")
     public ValCursDto getSpecificValute(@PathVariable @DateTimeFormat(pattern = "dd.MM.yy") LocalDate date, @PathVariable
-    double nominal, @PathVariable String code) {
+    Double nominal, @PathVariable String code) {
 
         return valCursService.getVaCursBySpecificValuteAndNominal(date, nominal, code);
     }

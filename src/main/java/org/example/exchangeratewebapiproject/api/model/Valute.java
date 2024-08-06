@@ -2,6 +2,7 @@ package org.example.exchangeratewebapiproject.api.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,16 +27,19 @@ public class Valute  {
     private Long id;
 
     @Column(name = "Code")
+    @NotBlank
     private String code;
 
     @Column(name = "Nominal")
+    @NotBlank
     private String nominal;
 
     @Column(name = "Name")
+    @NotBlank
     private String name;
 
     @Column(name = "Value")
-    private double value;
+    private Double value;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ValTypeId")

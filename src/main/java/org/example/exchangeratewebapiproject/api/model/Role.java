@@ -1,6 +1,7 @@
 package org.example.exchangeratewebapiproject.api.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ public class Role  {
     private Long id;
 
     @Column(name = "Name")
+    @NotBlank(message = "Role name dont empty")
     private String name;
 
     @CreationTimestamp

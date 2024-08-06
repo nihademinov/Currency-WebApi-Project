@@ -2,6 +2,7 @@ package org.example.exchangeratewebapiproject.api.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ public class ValType  {
     private Long id;
 
     @Column(name = "Type")
+    @NotBlank
     private String type;
 
 

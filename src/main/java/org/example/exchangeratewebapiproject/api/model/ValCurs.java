@@ -2,6 +2,7 @@ package org.example.exchangeratewebapiproject.api.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,12 +27,15 @@ public class ValCurs  {
     private Long id;
 
     @Column(name = "Date")
+    @NotBlank
     private String date;
 
     @Column(name = "Name")
+    @NotBlank
     private String name;
 
     @Column(name = "Description")
+    @NotBlank
     private String description;
 
     @CreationTimestamp

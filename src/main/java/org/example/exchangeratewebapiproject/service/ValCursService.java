@@ -31,7 +31,7 @@ public class ValCursService {
        return valCursManager.syncCurrDataCreate(localDate);
     }
 
-    public ValCursDto getVaCursBySpecificValuteAndNominal(LocalDate date, double nominal, String valuteCode) {
+    public ValCursDto getVaCursBySpecificValuteAndNominal(LocalDate date, Double nominal, String valuteCode) {
         return valCursManager.getValCursByValute(date, nominal, valuteCode);
     }
 

@@ -33,7 +33,7 @@ public class ValuteManager {
     }
 
 
-    public ValuteDto calculateValute(double nominal, ValuteDto valuteDto) {
+    public ValuteDto calculateValute(Double nominal, ValuteDto valuteDto) {
         valuteDto.setNominal(Double.toString(nominal / valuteDto.getValue()));
         valuteDto.setName(valuteDto.getName().replaceAll("\\d+", valuteDto.getNominal()));
         valuteDto.setValue(nominal);
