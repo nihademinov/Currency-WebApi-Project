@@ -4,6 +4,7 @@ import com.remondis.remap.Mapper;
 import lombok.AllArgsConstructor;
 import org.example.exchangeratewebapiproject.api.dto.ValuteDto;
 import org.example.exchangeratewebapiproject.api.model.Valute;
+import org.example.exchangeratewebapiproject.exceptionHandler.NotFoundException;
 import org.example.exchangeratewebapiproject.repository.ValuteRepository;
 //import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -27,7 +28,8 @@ public class ValuteManager {
 
             return map;
         }
-        return null;
+
+        throw new NotFoundException("Valute not found");
     }
 
 

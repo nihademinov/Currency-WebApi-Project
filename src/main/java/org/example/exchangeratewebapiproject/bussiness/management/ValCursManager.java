@@ -6,11 +6,13 @@ import jakarta.xml.bind.Unmarshaller;
 import lombok.RequiredArgsConstructor;
 import org.example.exchangeratewebapiproject.api.dto.ValCursDto;
 import org.example.exchangeratewebapiproject.api.dto.ValuteDto;
-import org.example.exchangeratewebapiproject.api.dto.responseDto.ValuteResponseDto;
 import org.example.exchangeratewebapiproject.api.dto.mappingDto.ValCursMapDto;
+import org.example.exchangeratewebapiproject.api.dto.responseDto.ValuteResponseDto;
 import org.example.exchangeratewebapiproject.api.model.ValCurs;
 import org.example.exchangeratewebapiproject.configuration.RestTemplateConfig;
+import org.example.exchangeratewebapiproject.exceptionHandler.AlreadyExistsException;
 import org.example.exchangeratewebapiproject.exceptionHandler.CustomRestClientException;
+import org.example.exchangeratewebapiproject.exceptionHandler.NotFoundException;
 import org.example.exchangeratewebapiproject.repository.ValCursRepository;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
@@ -31,17 +33,43 @@ public class ValCursManager {
     private final Mapper<ValCursMapDto, ValCurs> valCursMapDtoToValCursMapper;
     private final RestTemplateConfig restTemplateConfig;
     private final Mapper<ValuteDto, ValuteResponseDto> valuteDtoToValuteResponseDtoMapper;
-    private final Mapper<ValCurs,ValCursDto> valCursToValCursDtoMapper;
+    private final Mapper<ValCurs, ValCursDto> valCursToValCursDtoMapper;
 
     public List<ValCursMapDto> getAllValCurs() {
-        return valCursRepository.findAll().stream()
+        List<ValCursMapDto> valcurses = valCursRepository.findAll().stream()
                 .map(valCursEntityToValCursMapDtoMapper::map)
                 .collect(Collectors.toList());
+
+        if (valcurses.isEmpty()) {
+            throw new NotFoundException("No ValCurses found");
+        }
+        return valcurses;
 
     }
 
     public ValCursMapDto getValCursByDate(LocalDate date) {
-        return valCursEntityToValCursMapDtoMapper.map(valCursRepository.getValCursByDate(dateConvertor(date)));
+
+        if (checkValCursByDate(date)) {
+            ValCursMapDto valCursMapDto = valCursEntityToValCursMapDtoMapper.map(valCursRepository.getValCursByDate(dateConvertor(date)));
+            if (valCursMapDto == null) {
+                throw new NotFoundException("No ValCurs found");
+            }
+            return valCursMapDto;
+        }
+        throw new NotFoundException("No ValCurs found");
+
+    }
+
+    public boolean checkExistValCurs(LocalDate localDate) {
+        return checkValCursByDate(localDate);
+    }
+
+    public String syncCurrDataCreate(LocalDate localDate) {
+        if (checkExistValCurs(localDate))
+            throw new AlreadyExistsException("data already exists");
+
+        createValCurs(getValCursMapDto(localDate));
+        return "Successfully created";
     }
 
     public boolean checkValCursByDate(LocalDate date) {
@@ -86,7 +114,7 @@ public class ValCursManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        throw new NotFoundException("No ValCurs found");
     }
 
     private ValCursDto createResponseBySpecificValCurs(String date, ValuteDto valuteDto) {
@@ -110,7 +138,7 @@ public class ValCursManager {
             valute = valuteManager.calculateValute(nominal, valute);
             return createResponseBySpecificValCurs(dateConvertor(date), valute);
         }
-        return null;
+        throw new NotFoundException("No ValCurs found");
     }
 
     public void deleteValCursByDate(LocalDate date) {

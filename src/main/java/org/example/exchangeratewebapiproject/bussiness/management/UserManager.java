@@ -29,18 +29,19 @@ public class UserManager {
 
     public List<UserDto> geUsers() {
         List<User> allUsers = userRepository.findAll();
+        if(allUsers.isEmpty()) {
+            throw new NotFoundException("Users not found");
+        }
         return allUsers.stream()
                 .map(entityToUserDtoMapper::map)
                 .collect(Collectors.toList());
     }
 
     public UserDto getUsersById(Long id) {
-        Optional<User> resp = userRepository.getUserById(id);
-        return resp.stream().map(entityToUserDtoMapper::map).findFirst().orElse(null);
+        return entityToUserDtoMapper.map(getUser(id));
     }
 
     public String updateUser(Long id, UserDto userDTO) {
-
         User user = getUser(id);
 
         userDtoToUserMapper.map(userDTO, user);
@@ -50,7 +51,6 @@ public class UserManager {
 
 
     public User getUser(Long id) {
-
         return userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("User not found with id: " + id));
     }

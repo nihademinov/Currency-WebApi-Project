@@ -22,47 +22,25 @@ public class ValCursService {
         return valCursManager.getAllValCurs();
     }
 
-    public ValCursMapDto getValCursByDate(LocalDate date)
-    {
-        if(valCursManager.checkValCursByDate(date))
-        {
-            return valCursManager.getValCursByDate(date);
-        }
-        return null;
+    public ValCursMapDto getValCursByDate(LocalDate date) {
+        return valCursManager.getValCursByDate(date);
     }
 
-    public boolean checkExistValCurs(LocalDate localDate) {
-        return valCursManager.checkValCursByDate(localDate);
-    }
 
     public String syncCurrData(LocalDate localDate) {
-        if (checkExistValCurs(localDate))
-            throw new AlreadyExistsException("data already exists");
-
-        createValCurs(getValCursMapDto(localDate));
-        return "Successfully created";
+       return valCursManager.syncCurrDataCreate(localDate);
     }
 
-    public void createValCurs(ValCursMapDto valCurs) {
-        if (valCurs != null)
-            valCursManager.createValCurs(valCurs);
+    public ValCursDto getVaCursBySpecificValuteAndNominal(LocalDate date, double nominal, String valuteCode) {
+        return valCursManager.getValCursByValute(date, nominal, valuteCode);
     }
 
-    private ValCursMapDto getValCursMapDto(LocalDate date) {
-      return  valCursManager.getValCursMapDto(date);
-    }
-
-    public ValCursDto getVaCursBySpecificValuteAndNominal(LocalDate date,double nominal, String valuteCode) {
-        return  valCursManager.getValCursByValute(date,nominal,valuteCode);
-    }
     @Transactional
     public String deleteValCursByDate(LocalDate date) {
 
         valCursManager.deleteValCursByDate(date);
         return "Successfully deleted";
     }
-
-
 
 
 }

@@ -4,6 +4,7 @@ import com.remondis.remap.Mapper;
 import lombok.AllArgsConstructor;
 import org.example.exchangeratewebapiproject.api.dto.ValTypeDto;
 import org.example.exchangeratewebapiproject.api.model.ValType;
+import org.example.exchangeratewebapiproject.exceptionHandler.NotFoundException;
 import org.example.exchangeratewebapiproject.repository.ValTypeRepository;
 //import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,10 @@ public class ValTypeManager {
    public ValTypeDto getValTypeById(Long id) {
       Optional<ValType> valTypes =  valTypeRepository.findById(id);
 
+      if(valTypes.isEmpty())
+      {
+          throw  new NotFoundException("ValType not found");
+      }
       return valTypeEntityToValTypeDtoMapper.map(valTypes.get());
    }
 }
